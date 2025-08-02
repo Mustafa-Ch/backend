@@ -5,8 +5,8 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
- "scripts": {
-  "start": "node --max-old-space-size=1024 node_modules/.bin/nest start"
+  "scripts": {
+  "start": "node --max-old-space-size=4096 node_modules/.bin/nest start"
 },
   "scripts": {
     "build": "nest build",
