@@ -27,15 +27,20 @@ import { GoogleCalendarToken } from './google-calendar/entities/google-calendar.
 
     //   synchronize: false,
     // }),
-    TypeOrmModule.forRoot({
+     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.PG_HOST, // Use the PG_HOST from env
       port: 5432, // Default PostgreSQL port
       username: process.env.PG_USER, // Use PG_USER from env
       password: process.env.DB_PASSWORD, // Use DB_PASSWORD from env
       database: 'railway', // Name of the database
-      entities: [User,Chat,GoogleCalendarToken],
-      synchronize: false, // Keep false in production
+      autoLoadEntities: true, // Automatically load all entities (if you have any)
+      synchronize: true, // Automatically sync schema with the database (recommended for dev)
+      logging: true, // Enable logging of queries for debugging
+      ssl: false, // Disable SSL (set to true if you use SSL)
+      extra: {
+        connectionLimit: 10, // Set connection limit to 10
+      },
     }),
     ConfigModule.forRoot({
       isGlobal: true,
